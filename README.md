@@ -1,20 +1,14 @@
 # **TextClassfication**
 
----
-
 中文文本分类；bert；Pytorch
 
 # **介绍**
-
----
 
 模型： bert-chinese-base
 
 机器：window；3070Ti
 
 # 环境
-
----
 
 python3.8
 
@@ -24,15 +18,11 @@ transformers==4.31.0
 
 # **数据集**
 
----
-
 今日头条文本分类数据集
 
 地址：https://github.com/aceimnorstuvwxz/toutiao-text-classfication-dataset
 
 # 使用说明
-
----
 
 1. 准备数据
     
@@ -64,12 +54,8 @@ transformers==4.31.0
 
 # 未完待续
 
----
-
 todo：添加更多模型
 
 # 参考
-
----
 
 https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch
