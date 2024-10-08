@@ -44,7 +44,7 @@ def eval_model(model: BertClassification, dev_loader, tokenizer, loss_function):
 
 def trainer(train_loader, dev_loader, model, tokenizer, optimizer, loss_function):
     for epoch in range(config.epoch):
-        print_avg_loss = 0
+        losses = []
         for i, data in enumerate(tqdm(train_loader)):
             inputs, labels = data
             batch_tokenized = tokenizer.batch_encode_plus(inputs,
@@ -62,14 +62,14 @@ def trainer(train_loader, dev_loader, model, tokenizer, optimizer, loss_function
             loss.backward()
             optimizer.step()
 
-            print_avg_loss += loss.item()
+            losses.append(loss.item())
 
         accurate, dev_loss = eval_model(dev_loader=dev_loader,
                                         model=model,
                                         tokenizer=tokenizer,
                                         loss_function=loss_function)
         print("epoch: %d, train_loss:%.4f, dev_loss: %.4f, Accurate: %.4f" %
-              (epoch, print_avg_loss, dev_loss, accurate))
+              (epoch, np.mean(losses), dev_loss, accurate))
 
         torch.save(model.state_dict(), os.path.join(config.save_model_path, f'model_epoch_{epoch}.pt'))
 
